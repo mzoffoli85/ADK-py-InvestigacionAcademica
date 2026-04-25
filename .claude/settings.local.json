@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from google.adk.agents import SequentialAgent; print\\('SequentialAgent OK'\\)\")"
+    ]
+  }
+}

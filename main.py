@@ -68,7 +68,7 @@ def main() -> None:
         print("Error: el tema no puede estar vacío.")
         sys.exit(1)
 
-    required_vars = ["GOOGLE_API_KEY", "GOOGLE_SEARCH_API_KEY", "GOOGLE_SEARCH_ENGINE_ID"]
+    required_vars = ["DEEPSEEK_API_KEY"]
     missing = [v for v in required_vars if not os.getenv(v)]
     if missing:
         print(f"Error: faltan variables de entorno: {', '.join(missing)}")

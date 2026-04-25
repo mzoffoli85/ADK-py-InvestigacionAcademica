@@ -2,13 +2,16 @@
 
 Sistema multi-agente construido con **Google ADK** que investiga un tema técnico, sintetiza fuentes y detecta contradicciones entre ellas.
 
+> **Modelo de IA:** DeepSeek (`deepseek-chat`) via LiteLlm  
+> **Búsqueda web:** DuckDuckGo (sin API key, gratuito)
+
 ## Arquitectura
 
 ```
-RootAgent
-├── SearcherAgent      → busca 4-5 fuentes con Google Custom Search
-├── SynthesizerAgent   → resume cada fuente por separado
-└── CriticAgent        → detecta contradicciones entre síntesis
+RootAgent  [DeepSeek]
+├── SearcherAgent      [DeepSeek] → busca 4-5 fuentes con DuckDuckGo
+├── SynthesizerAgent   [DeepSeek] → resume cada fuente por separado
+└── CriticAgent        [DeepSeek] → detecta contradicciones entre síntesis
 ```
 
 ## Setup
@@ -16,16 +19,14 @@ RootAgent
 ```bash
 pip install -r requirements.txt
 cp .env.example .env
-# Editar .env con tus API keys
+# Agregar solo DEEPSEEK_API_KEY
 ```
 
 Variables necesarias en `.env`:
 
 | Variable | Descripción |
 |---|---|
-| `GOOGLE_API_KEY` | Gemini API key (Google AI Studio) |
-| `GOOGLE_SEARCH_API_KEY` | Google Custom Search API key |
-| `GOOGLE_SEARCH_ENGINE_ID` | ID del Custom Search Engine (cx) |
+| `DEEPSEEK_API_KEY` | API key de DeepSeek (platform.deepseek.com) |
 
 ## Uso
 
@@ -46,9 +47,9 @@ El reporte se guarda en `outputs/research_<tema>.md`.
 │   ├── synthesizer_agent.py # Síntesis por fuente
 │   └── critic_agent.py      # Detección de contradicciones
 ├── tools/
-│   └── search_tool.py       # Google Custom Search wrapper
+│   └── search_tool.py       # DuckDuckGo wrapper
 ├── prompts/                 # Instrucciones de cada agente (editables)
-└── outputs/                 # Reportes generados
+└── outputs/                 # Reportes generados (ignorados por git)
 ```
 
 ## Conceptos ADK practicados
@@ -57,3 +58,4 @@ El reporte se guarda en `outputs/research_<tema>.md`.
 - Agent delegation desde RootAgent a sub-agentes
 - Sequential orchestration con pasaje de resultados entre agentes
 - Agent specialization (1 responsabilidad por agente)
+- Custom LLM backend via `LiteLlm` (integración con modelos no-Gemini)

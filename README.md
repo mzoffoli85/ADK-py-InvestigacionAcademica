@@ -59,3 +59,5 @@ El reporte se guarda en `outputs/research_<tema>.md`.
 - Sequential orchestration con pasaje de resultados entre agentes
 - Agent specialization (1 responsabilidad por agente)
 - Custom LLM backend via `LiteLlm` (integración con modelos no-Gemini)
+
+<img width="1790" height="854" alt="image" src="https://github.com/user-attachments/assets/dcb0593a-d6bc-403a-8302-edac113adb94" />
